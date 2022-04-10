@@ -6,13 +6,12 @@ import (
 )
 
 type FileInfo struct {
-	location   string
-	name       string
-	size       int64
-	mode       os.FileMode
-	modTime    time.Time
-	isDir      bool
-	visibility string
+	location string
+	name     string
+	size     int64
+	mode     os.FileMode
+	modTime  time.Time
+	isDir    bool
 }
 
 // FileInfo interface
@@ -22,4 +21,3 @@ func (f *FileInfo) Size() int64        { return f.size }
 func (f *FileInfo) Mode() os.FileMode  { return f.mode }
 func (f *FileInfo) ModTime() time.Time { return f.modTime }
 func (f *FileInfo) IsDir() bool        { return f.isDir }
-func (f *FileInfo) Visibility() string { return f.visibility }

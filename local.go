@@ -8,9 +8,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-type LocalDriver struct {
-	Visibility string
-}
+type LocalDriver struct{}
 
 func (ld *LocalDriver) FileExists(location string) bool {
 	info, err := os.Stat(location)
@@ -148,12 +146,11 @@ func (ld *LocalDriver) CreateDirectory(location string) error {
 
 func (ld *LocalDriver) fromLocalFile(file os.FileInfo) *FileInfo {
 	return &FileInfo{
-		location:   file.Name(),
-		name:       file.Name(),
-		size:       file.Size(),
-		mode:       file.Mode(),
-		modTime:    file.ModTime(),
-		isDir:      file.IsDir(),
-		visibility: ld.Visibility,
+		location: file.Name(),
+		name:     file.Name(),
+		size:     file.Size(),
+		mode:     file.Mode(),
+		modTime:  file.ModTime(),
+		isDir:    file.IsDir(),
 	}
 }

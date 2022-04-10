@@ -2,7 +2,13 @@ package gofile
 
 import "fbnoi.com/goutil/collection"
 
-var disk = map[string]Driver{}
+var (
+	local = &LocalDriver{}
+)
+
+var disk = map[string]Driver{
+	"local": local,
+}
 
 type Driver interface {
 	FileExists(location string) bool
@@ -10,8 +16,8 @@ type Driver interface {
 	Has(location string) bool
 
 	Write(location string, content []byte, flag int) (int, error)
-	WriteString(location, content string, flag int) error
-	List(location string) collection.Collection[*FileInfo]
+	WriteString(location, content string, flag int) (int, error)
+	List(location string) (collection.Collection[*FileInfo], error)
 	Read(location string) ([]byte, error)
 	ReadString(location string) (string, error)
 
